@@ -1,3 +1,5 @@
+import z from 'zod';
+
 export enum UserStatus {
   ACTIVE = 'active',
   INACTIVE = 'inactive',
@@ -15,3 +17,7 @@ export enum Gender {
   FEMALE = 'female',
   OTHER = 'other',
 }
+
+export const UserStatusSchema = z.enum(UserStatus);
+export const UserRoleSchema = z.enum(UserRole);
+export const GenderSchema = z.enum(Gender);

@@ -1,6 +1,6 @@
 import { config } from 'dotenv';
 import { join } from 'path';
-import { LogLevel } from 'typeorm';
+import { LogLevel } from 'typeorm/browser';
 
 config({ path: `.env.${process.env.NODE_ENV || 'development'}` });
 
@@ -11,10 +11,12 @@ export const typeOrmConfig = {
   username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  entities: [join(process.cwd(), 'src/**/*.entity{.ts,.js}')],
-  migrations: [join(process.cwd(), 'src/migrations/**/*{.ts,.js}')],
+  entities: [join(process.cwd(), 'src/**/*.entity.js')],
+  autoLoadEntities: true,
+  // migrations: [join(process.cwd(), 'src/migrations/**/*{.ts,.js}')],
+  migrations: [],
   synchronize: false,
-  migrationsRun: true,
+  migrationsRun: false,
   logging:
     process.env.NODE_ENV === 'development'
       ? (['error', 'warn', 'migration', 'query'] as LogLevel[])
